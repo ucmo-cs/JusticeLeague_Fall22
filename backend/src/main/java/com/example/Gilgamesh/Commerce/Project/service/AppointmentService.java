@@ -30,8 +30,8 @@ public class AppointmentService {
     {
         Appointment original = appointmentRepository.findById(appointment_id).get();
 
-        // using this to try and safe gaurd from errors
-        if (appointmentRepository.findById(appointment_id).get() != null) {
+        // using this to try and guard from errors
+        if (original != null) {
             original.setAppointmentType((newApp.getAppointmentType() != null) ? newApp.getAppointmentType() : original.getAppointmentType());
             original.setLocation((newApp.getLocation() != null) ? newApp.getLocation() : original.getLocation());
             original.setTime((newApp.getTime() != null) ? newApp.getTime() : original.getTime());
@@ -44,4 +44,12 @@ public class AppointmentService {
         return appointmentRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
+    public Appointment findAppointment(Long appId) { return appointmentRepository.findById(appId).get(); }
+
+    @Transactional
+    public String deleteAppointment(Long appId) {
+        appointmentRepository.deleteById(appId);
+        return "ok - appointment deleted";
+    }
 }

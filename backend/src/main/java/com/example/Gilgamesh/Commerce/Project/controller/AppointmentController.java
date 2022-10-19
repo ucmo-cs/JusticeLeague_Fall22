@@ -27,9 +27,9 @@ public class AppointmentController {
         return new ResponseEntity<>(appServ.create(tempCustID, appointment), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/appointment={appointmentID}")
-    public ResponseEntity<?> editAppointment(@RequestBody Appointment appointment){
-        return new ResponseEntity<>(appServ.edit(appointment.getId(), appointment), HttpStatus.OK);
+    @PatchMapping("/appointment/{appointmentID}")
+    public ResponseEntity<?> editAppointment(@PathVariable Long appointmentID, @RequestBody Appointment appointment){
+        return new ResponseEntity<>(appServ.edit(appointmentID, appointment), HttpStatus.OK);
     }
 
     /*
@@ -40,5 +40,25 @@ public class AppointmentController {
     @GetMapping("/{tempCustID}/appointment")
     public ResponseEntity<?> findAllAppointments(){
         return new ResponseEntity<>(appServ.findAllAppointments(), HttpStatus.OK);
+    }
+
+    /*
+        - Function: findAppointment
+        - Purpose: used to find a single appointment
+        - How: uses a GET request to find an appointment
+    */
+    @GetMapping("/{tempCustID}/appointment/{appointmentID}")
+    public ResponseEntity<?> findAppointment(@PathVariable Long appointmentID){
+        return new ResponseEntity<>(appServ.findAppointment(appointmentID), HttpStatus.OK);
+    }
+
+    /*
+        - Function: deleteAppointment
+        - Purpose: used to delete a single appointment
+        - How: uses a DELETE request to delete an appointment
+    */
+    @DeleteMapping("/appointment/{appointmentID}")
+    public ResponseEntity<?> deleteAppointment(@PathVariable Long appointmentID){
+        return new ResponseEntity<>(appServ.deleteAppointment(appointmentID), HttpStatus.OK);
     }
 }
