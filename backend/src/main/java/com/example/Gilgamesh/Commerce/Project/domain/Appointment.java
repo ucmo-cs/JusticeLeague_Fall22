@@ -19,7 +19,7 @@ public class Appointment {
     private Long id;
 
     // What is the nature of the meeting
-    private MeetingType appointmentType;
+    private MeetingType appointmentType; 
 
     // Location of the meeting
     private String location;
