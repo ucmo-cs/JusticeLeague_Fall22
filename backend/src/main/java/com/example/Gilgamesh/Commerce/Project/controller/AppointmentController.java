@@ -1,5 +1,6 @@
 package com.example.Gilgamesh.Commerce.Project.controller;
 
+import com.example.Gilgamesh.Commerce.Project.StringLibrary;
 import com.example.Gilgamesh.Commerce.Project.service.AppointmentService;
 import com.example.Gilgamesh.Commerce.Project.domain.Appointment;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,20 @@ public class AppointmentController {
     @PostMapping("/appointment")
     public ResponseEntity<?> createAppointment(@RequestBody Appointment appointment){
 
-        return new ResponseEntity<>(appServ.create(tempCustID, appointment), HttpStatus.CREATED);
+        Appointment createdAppointment = appServ.create(tempCustID, appointment);
+        ResponseEntity<?> response = (createdAppointment == null)
+                // This string library may just be temp
+                ? new ResponseEntity<>(StringLibrary.InvalidTimeMessage(), HttpStatus.BAD_REQUEST)
+                : new ResponseEntity<>(createdAppointment, HttpStatus.CREATED);
+        return response;
     }
 
+    /*
+       - Function: editAppointment
+       - Purpose: used to edit an instance of an appointment
+       - How: uses a PATCH request with parameters appointment type, location, and time
+           to edit a server side instance of an appointment
+   */
     @PatchMapping("/appointment/{appointmentID}")
     public ResponseEntity<?> editAppointment(@PathVariable Long appointmentID, @RequestBody Appointment appointment){
         return new ResponseEntity<>(appServ.edit(appointmentID, appointment), HttpStatus.OK);

@@ -3,7 +3,6 @@ package com.example.Gilgamesh.Commerce.Project.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
