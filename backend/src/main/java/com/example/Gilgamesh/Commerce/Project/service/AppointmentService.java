@@ -1,7 +1,9 @@
 package com.example.Gilgamesh.Commerce.Project.service;
 
 import com.example.Gilgamesh.Commerce.Project.domain.Appointment;
+import com.example.Gilgamesh.Commerce.Project.domain.Customer;
 import com.example.Gilgamesh.Commerce.Project.repository.AppointmentRepository;
+import com.example.Gilgamesh.Commerce.Project.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,7 @@ import java.util.Optional;
 public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
+    private final CustomerRepository customerRepository;
 
     /*
         - Function: create
@@ -23,7 +26,12 @@ public class AppointmentService {
     */
     @Transactional
     public Appointment create(Long cus_id, Appointment appointment){
-        return (checkAppointmentAvailability(appointment)) ? appointmentRepository.save(appointment) : null;
+        if (!checkAppointmentAvailability(appointment)) {return null;}
+
+        Customer customer;
+        customer = customerRepository.findById(cus_id).orElseThrow(()->new IllegalArgumentException("Check customer Id"));
+        appointment.setCustomer(customer);
+        return appointmentRepository.save(appointment);
     }
 
     /*
@@ -66,7 +74,7 @@ public class AppointmentService {
         - Purpose: used to find a single appointment
     */
     @Transactional(readOnly = true)
-    public Appointment findAppointment(Long appId) { return appointmentRepository.findById(appId).get(); }
+    public Appointment findAppointment(Long appId) { return appointmentRepository.findById(appId).orElseThrow(() -> new IllegalArgumentException("Check appointment ID")); }
 
     /*
         - Function: deleteAppointment

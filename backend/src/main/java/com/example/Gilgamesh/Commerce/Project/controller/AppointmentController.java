@@ -22,10 +22,10 @@ public class AppointmentController {
         - How: uses a POST request with parameters appointment type, location, and time
             to create a server side instance of an appointment
     */
-    @PostMapping("/appointment")
-    public ResponseEntity<?> createAppointment(@RequestBody Appointment appointment){
+    @PostMapping("/customer/{customerID}/appointment")
+    public ResponseEntity<?> createAppointment(@PathVariable Long customerID, @RequestBody Appointment appointment){
 
-        Appointment createdAppointment = appServ.create(tempCustID, appointment);
+        Appointment createdAppointment = appServ.create(customerID, appointment);
         ResponseEntity<?> response = (createdAppointment == null)
                 // This string library may just be temp
                 ? new ResponseEntity<>(StringLibrary.InvalidTimeMessage(), HttpStatus.BAD_REQUEST)
