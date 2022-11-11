@@ -1,0 +1,21 @@
+.filter_box{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    
+    width: 45px;
+    height: 45px;
+
+    border-radius: 100px;
+    box-shadow: 0px 0px 5px gray;
+    
+}
+
+.filter_box:hover{
+    background-color: lightgray !important;
+}
+
+.filter_box-icon{
+    color: gray;
+}

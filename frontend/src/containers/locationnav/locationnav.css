@@ -1,0 +1,46 @@
+.box_locationnav-main{
+    
+   position: absolute;
+   width: 400px;
+   height: 700px;
+   left: 100px;
+   top: 50px;
+
+   background-color: white;
+   border-radius: 10px;
+   box-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+
+.box_locationnav-header{
+    background-color: aquamarine;
+    
+}
+
+
+.box_locationnav-body{
+    
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    left: 0px;
+    top: 75px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+    
+
+}
+
+/* Scrollbar */
+.box_locationnav-body::-webkit-scrollbar {
+    display: contents;
+    width: 5px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #89C143;
+    border-radius: 100px;
+}
+::-webkit-scrollbar-track{
+    background-color: lightgray;
+    border-radius: 100px;
+}
