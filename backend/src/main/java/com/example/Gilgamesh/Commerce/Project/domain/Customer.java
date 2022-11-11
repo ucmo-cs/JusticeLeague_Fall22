@@ -1,5 +1,6 @@
 package com.example.Gilgamesh.Commerce.Project.domain;
 
+import com.example.Gilgamesh.Commerce.Project.DTO.CustomerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,11 +30,10 @@ public class Customer {
     private List<Appointment> appointments = new ArrayList<>();
 
     public boolean equals(Customer c) {
-        if (this.firstName.equals(c.firstName)
-                && this.lastName.equals(c.lastName)
-                && this.email.equals(c.email)) {
-            return true;
-        }
-        return false;
+        return this.firstName.equals(c.firstName) && this.lastName.equals(c.lastName) && this.email.equals(c.email);
+    }
+
+    public boolean equals(CustomerDTO c) {
+        return this.firstName.equals(c.getFirstName()) && this.lastName.equals(c.getLastName()) && this.email.equals(c.getEmail());
     }
 }

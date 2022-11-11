@@ -20,10 +20,7 @@ public class Appointment {
     private Long id;
 
     // What is the nature of the meeting
-    private MeetingType appointmentType; 
-
-    // Location of the meeting
-    private String location;
+    private MeetingType appointmentType;
 
     // The date and time of the given appointment
     private LocalDateTime time;
@@ -32,4 +29,9 @@ public class Appointment {
     @JoinColumn(name = "customer_id")
     @JsonIgnore
     private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    @JsonIgnore
+    private Location location;
 }

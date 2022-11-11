@@ -1,5 +1,6 @@
 package com.example.Gilgamesh.Commerce.Project.service;
 
+import com.example.Gilgamesh.Commerce.Project.DTO.CustomerDTO;
 import com.example.Gilgamesh.Commerce.Project.domain.Appointment;
 import com.example.Gilgamesh.Commerce.Project.repository.AppointmentRepository;
 import com.example.Gilgamesh.Commerce.Project.repository.CustomerRepository;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -18,18 +20,27 @@ public class CustomerService {
     private final AppointmentRepository appointmentRepository;
 
     @Transactional
-    public Customer create(Customer cust){
-        return customerRepository.save(cust);
+    public CustomerDTO create(CustomerDTO cust){
+        for(Customer c : customerRepository.findAll()) {
+            if(c.equals(cust)) { return new CustomerDTO(); }
+        }
+        customerRepository.save(generateCustomerObject(cust));
+        return cust;
     }
 
     @Transactional(readOnly = true)
-    public Customer find(Long custID){
-        return customerRepository.findById(custID).orElseThrow(() -> new IllegalArgumentException("Check customer ID"));
+    public CustomerDTO find(Long custID){
+        return generateResponseDTO(customerRepository.findById(custID).orElseThrow(() -> new IllegalArgumentException("Check customer ID")));
     }
 
     @Transactional(readOnly = true)
-    public List<Customer> findAll() {
-        return customerRepository.findAll();
+    public List<CustomerDTO> findAll() {
+        List<CustomerDTO> cDTO = new ArrayList<CustomerDTO>();
+
+        for(Customer c: customerRepository.findAll()){
+            cDTO.add(generateResponseDTO(c));
+        }
+        return cDTO;
     }
 
     @Transactional
@@ -49,7 +60,7 @@ public class CustomerService {
 
 
     @Transactional
-    public Customer edit(Long custID, Customer editCust) {
+    public CustomerDTO edit(Long custID, CustomerDTO editCust) {
         Customer oldCust = customerRepository.findById(custID).orElseThrow(() -> new IllegalArgumentException("Check customer ID"));
 
         if(!oldCust.equals(editCust)) {
@@ -59,6 +70,26 @@ public class CustomerService {
             oldCust.setPhoneNumber((editCust.getPhoneNumber() != null) ? editCust.getPhoneNumber() : oldCust.getPhoneNumber());
         }
 
-        return oldCust;
+        return generateResponseDTO(oldCust);
+    }
+
+    private CustomerDTO generateResponseDTO(Customer cust) {
+        CustomerDTO c = new CustomerDTO();
+        c.setFirstName(cust.getFirstName());
+        c.setLastName(cust.getLastName());
+        c.setEmail(cust.getEmail());
+        c.setPhoneNumber(cust.getPhoneNumber());
+        c.setAppointments(cust.getAppointments());
+        return c;
+    }
+
+    private Customer generateCustomerObject(CustomerDTO cust) {
+        Customer c = new Customer();
+        c.setFirstName(cust.getFirstName());
+        c.setLastName(cust.getLastName());
+        c.setEmail(cust.getEmail());
+        c.setPhoneNumber(cust.getPhoneNumber());
+        c.setAppointments(cust.getAppointments());
+        return c;
     }
 }
