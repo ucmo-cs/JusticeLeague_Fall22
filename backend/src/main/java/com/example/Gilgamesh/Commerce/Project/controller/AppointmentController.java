@@ -1,5 +1,6 @@
 package com.example.Gilgamesh.Commerce.Project.controller;
 
+import com.example.Gilgamesh.Commerce.Project.DTO.AppointmentDTO;
 import com.example.Gilgamesh.Commerce.Project.StringLibrary;
 import com.example.Gilgamesh.Commerce.Project.service.AppointmentService;
 import com.example.Gilgamesh.Commerce.Project.domain.Appointment;
@@ -14,18 +15,16 @@ import org.springframework.web.bind.annotation.*;
 public class AppointmentController {
     private final AppointmentService appServ;
 
-    long tempCustID = 1;
-
     /*
         - Function: createAppointment
         - Purpose: used to create an instance of an appointment
         - How: uses a POST request with parameters appointment type, location, and time
             to create a server side instance of an appointment
     */
-    @PostMapping("/appointment")
-    public ResponseEntity<?> createAppointment(@RequestBody Appointment appointment){
+    @PostMapping("/customer={customerID}/appointment")
+    public ResponseEntity<?> createAppointment(@PathVariable Long customerID,@RequestBody AppointmentDTO appointment){
 
-        Appointment createdAppointment = appServ.create(tempCustID, appointment);
+        AppointmentDTO createdAppointment = appServ.create(customerID, appointment);
         ResponseEntity<?> response = (createdAppointment == null)
                 // This string library may just be temp
                 ? new ResponseEntity<>(StringLibrary.InvalidTimeMessage(), HttpStatus.BAD_REQUEST)
@@ -39,19 +38,19 @@ public class AppointmentController {
        - How: uses a PATCH request with parameters appointment type, location, and time
            to edit a server side instance of an appointment
    */
-    @PatchMapping("/appointment/{appointmentID}")
-    public ResponseEntity<?> editAppointment(@PathVariable Long appointmentID, @RequestBody Appointment appointment){
-        return new ResponseEntity<>(appServ.edit(appointmentID, appointment), HttpStatus.OK);
+    @PatchMapping("/customer={customerID}/appointment={appointmentID}")
+    public ResponseEntity<?> editAppointment(@PathVariable Long appointmentID, @RequestBody AppointmentDTO appointmentDTO){
+        return new ResponseEntity<>(appServ.edit(appointmentID, appointmentDTO), HttpStatus.OK);
     }
 
     /*
-        - Function: findAllAppointments
+        - Function: findAllCustomerAppointments
         - Purpose: used to find all appointments for a certain user
         - How: uses a GET request to find all appointments for a specific user @ a specific customerID
     */
-    @GetMapping("/{tempCustID}/appointment")
-    public ResponseEntity<?> findAllAppointments(){
-        return new ResponseEntity<>(appServ.findAllAppointments(), HttpStatus.OK);
+    @GetMapping("/customer={customerID}/appointment")
+    public ResponseEntity<?> findAllCustomerAppointments(@PathVariable Long customerID){
+        return new ResponseEntity<>(appServ.findAllCustomerAppointments(customerID), HttpStatus.OK);
     }
 
     /*
@@ -59,9 +58,19 @@ public class AppointmentController {
         - Purpose: used to find a single appointment
         - How: uses a GET request to find an appointment
     */
-    @GetMapping("/{tempCustID}/appointment/{appointmentID}")
+    @GetMapping("/customer={customerID}/appointment={appointmentID}")
     public ResponseEntity<?> findAppointment(@PathVariable Long appointmentID){
         return new ResponseEntity<>(appServ.findAppointment(appointmentID), HttpStatus.OK);
+    }
+
+    /*
+        - Function: findEveryAppointment
+        - Purpose: used to find all the appointments in the system
+        - How: uses a GET request to find all appointments
+    */
+    @GetMapping("/appointment")
+    public ResponseEntity<?> findEveryAppointment() {
+        return new ResponseEntity<>(appServ.findEveryAppointment(), HttpStatus.OK);
     }
 
     /*
@@ -69,7 +78,7 @@ public class AppointmentController {
         - Purpose: used to delete a single appointment
         - How: uses a DELETE request to delete an appointment
     */
-    @DeleteMapping("/appointment/{appointmentID}")
+    @DeleteMapping("/appointment={appointmentID}")
     public ResponseEntity<?> deleteAppointment(@PathVariable Long appointmentID){
         return new ResponseEntity<>(appServ.deleteAppointment(appointmentID), HttpStatus.OK);
     }

@@ -1,5 +1,6 @@
 package com.example.Gilgamesh.Commerce.Project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,11 +20,18 @@ public class Appointment {
     private Long id;
 
     // What is the nature of the meeting
-    private MeetingType appointmentType; 
-
-    // Location of the meeting
-    private String location;
+    private MeetingType appointmentType;
 
     // The date and time of the given appointment
     private LocalDateTime time;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    @JsonIgnore
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    @JsonIgnore
+    private Location location;
 }
