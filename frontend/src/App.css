@@ -1,15 +1,29 @@
 .App {
   text-align: center;
-}
-
-.Appointment {
-  border: solid 1px white;
+  width: 100px;
 }
 
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Ap{
+
+  width: 20000px;
+  height: 2000px;
+   
+}
+
+.sZ{
+position: relative;
+border-radius: 25px;
+  background:whitesmoke;
+  padding: 300px;
+  width: 200px;
+  height: 150px;
+  
+}
+.btn-flat {
+ position: center;
+ left: 100px;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -17,27 +31,140 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-
-.App-header {
+.Ap {
   background-color: hsl(203, 63%, 38%);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
+}
+.yes{
+  background-color: hsl(203, 63%, 38%);
+}
+.fs-1{
+
+bottom: 0px;
+position: fixed;
+right: 0px;
+height: 500px;
+left: 550px;
+
+}
+
+.fs-5{
+bottom: 0px;
+  position: fixed;
+  right: 0px;
+  height: 460px;
+  left: 550px;
+}
+
+
+.cc{
+  top:0px;
+  position: fixed;
+  background-color: whitesmoke;
+  width: 650px;
+  height: 700px;
+  border-radius: 15px;
+}
+
+
+.r{
+  bottom: 500px;
+    position: center;
+    left: 40px
+}
+.a{
+  bottom: 500px;
+ padding: opx;
+  position: center;
+  left: 290px;
+}
+.b {
+  bottom: 500px;
+  position: center;
+  left: 500px;
+  padding: opx;
+}
+.c {
+  bottom: 500px;
+  position: center;
+  left: 140px;
+  padding: opx;
+}
+.d {
+  bottom: 500px;
+  position: center;
+  left: 140px;
+  padding: opx;
+}
+
+.e {
+  bottom: 500px;
+  position: center;
+  left: 140px;
+}
+.f {
+  bottom: 500px;
+  position: center;
+  left: 140px;
+  padding: opx;
+}
+.g {
+  bottom: 500px;
+  position: center;
+  left: 140px;
+  padding: opx;
+}
+.h {
+  bottom: 500px;
+  position:center;
+  left: 140px;
+  padding: opx;
+}
+
+.i {
+  bottom: 400px;
+  position: center;
+  left: 140px;
+  padding: opx;
+}
+
+
+.k {
+  bottom: 500px;
+  position: center;
+  left: 140px;
+  padding: opx;
+}
+
+.l {
+  bottom: 400px;
+  position: center;
+left: 140px;
+padding: opx;
 
 }
 
 
 
+.j{
+  bottom: 500px;
+  position: fixed;
+  left: 150px;
+  
+}
+
+.true {
+ background-color: whitesmoke;
+  left: 0px;
+
+  
+}
 
 
 
 .App-link {
   color: #61dafb;
+
+
 }
 
 @keyframes App-logo-spin {
