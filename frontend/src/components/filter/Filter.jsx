@@ -1,14 +1,13 @@
 import React from "react";
 import './filter.css';
-import { RiStockFill } from "react-icons/ri";
-import { RiEqualizerFill } from "react-icons/ri";
+import { BsFilterRight } from "react-icons/bs";
 import { Button } from "react-bootstrap";
 
 const Filters = () => {
     return(
         <div className="filter_box">
             <div className="filter_box-icon">
-                <RiEqualizerFill/>
+                <BsFilterRight size={30}/>
             
             </div>
         </div>

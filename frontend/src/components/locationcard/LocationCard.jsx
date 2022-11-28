@@ -9,7 +9,7 @@
 /* Imports */
 import React from "react";
 import './locationcard.css';
-import { RiMapPin5Fill } from "react-icons/ri";
+import { BsMap } from "react-icons/bs";
 import { Button } from "react-bootstrap";
 import { NoLocation } from "../../components";
 
@@ -27,7 +27,7 @@ const LocationCard = () =>{
             </div>
             
             <div className="card_content-icon">
-                <RiMapPin5Fill color="#89C143" size={50}/>
+                <BsMap color="#89C143" size={40}/>
             </div>
             <div className="card_schedule" >
                 <Button type="button" className="card_schedule-button" onClick={() => console.log('Clicked')}>Schedule Appointment</Button>

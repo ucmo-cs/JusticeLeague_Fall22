@@ -7,6 +7,7 @@
 /* Imports */
 import React from "react";
 import { LocationCard, NoLocation, Filter } from "../../components";
+import { BsArrowReturnLeft } from "react-icons/bs";
 import './locationnav.css';
 
 
@@ -17,7 +18,10 @@ const LocationNav = () => {
     return (
         <div className="box_locationnav-main">
             <div className="box_locationnav-header">
-                <div className="box_locationnav-search"><div className="box_locationnav-filter"><Filter/></div></div>
+                <div className="box_locationnav-search"><BsArrowReturnLeft color="#89C143" size={20}/></div>
+                <div className="box_locationnav-logo"></div>
+                <div className="box_locationnav-filter"><Filter/></div>
+                
             </div>
             <div className="box_locationnav-body">
                 <NavBody/>
@@ -34,14 +38,7 @@ const NavBody = () => {
             <LocationCard/>
             <LocationCard/>
             <LocationCard/>
-            <LocationCard/>
-            <LocationCard/>
-            <LocationCard/>
-            <LocationCard/>
-            <LocationCard/>
-            <LocationCard/>
-            <LocationCard/>
-            <LocationCard/>
+            
         </div>
          
       )

@@ -1,5 +1,12 @@
 .App{
   overflow: hidden;
+  background-color: aquamarine;
+  
+}
+
+.App_background{
+  position: absolute;
+  background-color: blue !important;
 }
 /*
 .App {
