@@ -17,7 +17,7 @@ public class CustomerController {
 
     @PostMapping("/customer")
     public ResponseEntity<?> createCustomer(@RequestBody CustomerDTO cust) {
-        return new ResponseEntity<>(customerService.create(cust), HttpStatus.OK);
+        return new ResponseEntity<>(customerService.create(cust), HttpStatus.CREATED);
     }
 
     @GetMapping("/customer={customerId}")

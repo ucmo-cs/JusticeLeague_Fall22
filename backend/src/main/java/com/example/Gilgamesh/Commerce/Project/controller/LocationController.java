@@ -17,7 +17,7 @@ public class LocationController {
 
     @PostMapping("/location")
     public ResponseEntity<?> create(@RequestBody LocationDTO l) {
-        return new ResponseEntity<>(locationService.create(l), HttpStatus.OK);
+        return new ResponseEntity<>(locationService.create(l), HttpStatus.CREATED);
     }
 
     @GetMapping("/location")
