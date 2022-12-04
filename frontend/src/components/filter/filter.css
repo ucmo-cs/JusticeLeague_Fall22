@@ -10,14 +10,13 @@
     border-radius: 100px;
     
     
-}
-
-.filter_box:hover{
-
+    
 }
 
 .filter_box-icon{
-    color: gray;
+    color: gray !important;
+    border-color: transparent !important;
+    background-color: transparent !important;
     
 }
 .filter_box-icon:hover{

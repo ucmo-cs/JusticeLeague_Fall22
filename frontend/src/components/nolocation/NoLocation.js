@@ -2,6 +2,8 @@ import {RiFlagLine} from "react-icons/ri";
 import './nolocation.css';
  
 <RiFlagLine color="#89C143" size={50}/>
+/** Created by Philipp Rojas-Zdjelar */
+
 const NoLocation = () => {
     return(
         <div className="Parent">

@@ -5,6 +5,7 @@
    height: 700px;
    left: 100px;
    top: 50px;
+   z-index: 8 !important;
 
    background-color: white;
    border-radius: 10px;

@@ -12,9 +12,17 @@ import './locationcard.css';
 import { BsMap } from "react-icons/bs";
 import { Button } from "react-bootstrap";
 import { NoLocation } from "../../components";
+import { AppointmentContain } from "../../containers";
+import { useState } from "react";
+
+/** Created by Philipp Rojas-Zdjelar */
 
 /* Card */
 const LocationCard = () =>{
+    const[show, setShow] = useState(false);
+    const handleChange=()=>{
+        setShow(!show);
+    }
     return(
         <div className="card_content"> {/*Rect1*/}
             <div className="card_content-info">
@@ -30,8 +38,9 @@ const LocationCard = () =>{
                 <BsMap color="#89C143" size={40}/>
             </div>
             <div className="card_schedule" >
-                <Button type="button" className="card_schedule-button" onClick={() => console.log('Clicked')}>Schedule Appointment</Button>
+                <Button type="button" className="card_schedule-button" onClick={handleChange}>Schedule Appointment</Button>
             </div>
+            
         </div>
     )
 }

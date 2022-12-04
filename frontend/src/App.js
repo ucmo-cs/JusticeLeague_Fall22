@@ -4,18 +4,24 @@ import { Button } from 'react-bootstrap';
 import React from 'react';
 import { LocationNav, AppointmentContain } from './containers';
 import { Locationcard } from './components';
+import FilterContain from './containers/filtercontain/FilterContain';
 
 const App = () =>{
   return(
-    <div>
+    <div className='App_Main'>
       {/**<header>Search</header>*/}
       
       {/** <AppointmentContain />*/}
+      <div>
+        <LocationNav />
+      </div>
       
-      <LocationNav />
+      
       
     </div>
   )
 }
+
+
 
 export default App;

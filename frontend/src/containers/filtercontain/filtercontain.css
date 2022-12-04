@@ -1,0 +1,59 @@
+.FilterContain_Box{
+    position:absolute;
+    left: 57px;
+    top: 1px;
+    width: 200px;
+    height: 300px;
+    padding: 15px;
+    z-index: 1 !important;
+    align-items: center;
+    justify-content: center;
+    
+    border-radius: 0px 10px 10px 0px;
+    /*box-shadow: 0px 0px 8px rgb(95, 95, 95);*/
+    background-color: lightgray;
+}
+
+.FilterContain_Box-Title{
+    position: relative;
+
+    font-size: 15px;
+    font-weight: 600;
+    color: gray;
+}
+
+.FilterContain_Box-Options{
+    position: absolute;
+    flex-direction: column;
+    height: 240px;
+    font-size: small;
+    color: white;
+    margin-top: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}
+
+.Appointment_Button1{
+    border-radius: 100px ;
+    color: white;
+    background-color: #89C143;
+    border-width: 0px;
+    margin-bottom: 5px;
+}
+.Appointment_Button:hover{
+    background-color: gray;
+}
+
+.FilterContain_Box-Options::-webkit-scrollbar {
+    display: contents;
+    width: 5px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: gray;
+    border-radius: 100px;
+}
+::-webkit-scrollbar-track{
+    background-color: lightgray;
+    border-radius: 100px;
+}
